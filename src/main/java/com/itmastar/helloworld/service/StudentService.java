@@ -30,8 +30,26 @@ public class StudentService {
         return studentRepo.findByAge(age);
     }
 
+    public Student  updateStudentByID(int id, Student studentInfoToUpdate){
+
+         if(studentRepo.existsById(id)){
+
+             studentInfoToUpdate.setId(id);
+
+             return  studentRepo.save(studentInfoToUpdate);
+         }
+
+else return null;
+
+    }
+
     public Student getStudentByName(String  name){
         return studentRepo.findByName(name);
     }
 
+    public String deleteAllStudents () {
+
+        studentRepo.deleteAll();
+        return "Student records deleted !! ";
+    }
 }
